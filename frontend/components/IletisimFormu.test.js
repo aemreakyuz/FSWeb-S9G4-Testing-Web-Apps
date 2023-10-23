@@ -127,4 +127,14 @@ test("form gönderildiğinde girilen tüm değerler render ediliyor.", async () 
       mesaj: "emre",
     });
   });
+
+  const submitBtn = screen.getByRole("button", { name: /Gönder/i });
+  userEvent.click(submitBtn);
+
+  expect(screen.getByTestId("firstnameDisplay")).toHaveTextContent("testt");
+  expect(screen.getByTestId("lastnameDisplay")).toHaveTextContent("t");
+  expect(screen.getByTestId("emailDisplay")).toHaveTextContent(
+    "abcde@abcde.com"
+  );
+  expect(screen.getByTestId("messageDisplay")).toHaveTextContent("emre");
 });
